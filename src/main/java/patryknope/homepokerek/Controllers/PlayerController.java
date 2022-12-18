@@ -26,7 +26,7 @@ public class PlayerController {
         return playerService.getAllPlayers();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{id}/games")
     public Set<Game> getGamesOfPlayer(@PathVariable Long id) {
         return playerService.getGamesOfPlayer(id);
     }
