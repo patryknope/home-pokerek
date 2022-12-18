@@ -26,7 +26,7 @@ public class PlayerService {
     }
 
     public Player addPlayer(Player player) {
-        if (canPlayerBeDeleted(player)) {
+        if (canPlayerBeAdded(player)) {
             return playerRepository.save(player);
         } else {
             return null; //TODO: throw exception
@@ -59,7 +59,7 @@ public class PlayerService {
     }
 
     //helper function to determine if player can be deleted
-    private boolean canPlayerBeDeleted(Player player) {
+    private boolean canPlayerBeAdded(Player player) {
         return !playerRepository.existsByEmail(player.getEmail()) &&
                 !playerRepository.existsByTelephoneNumber(player.getTelephoneNumber());
     }
