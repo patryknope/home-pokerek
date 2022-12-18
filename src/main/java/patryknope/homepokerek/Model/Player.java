@@ -1,9 +1,6 @@
 package patryknope.homepokerek.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -11,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -30,5 +30,6 @@ public class Player {
     @Pattern(regexp = "[1-9]\\d{8}") // must be a 9 digit number not starting with 0
     private String telephoneNumber;
     private int gamesWon;
-
+    @ManyToMany(mappedBy ="playerSet")
+    private Set<Game> gameSet = new HashSet<>();
 }

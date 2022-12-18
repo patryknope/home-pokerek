@@ -1,12 +1,11 @@
 package patryknope.homepokerek.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Game {
@@ -18,5 +17,12 @@ public class Game {
     private LocalDate gameDate;
     private LocalDateTime gameStart;
     private LocalDateTime gameEnd;
+    @ManyToMany
+    @JoinTable(
+            name="players_in_game",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "player_id")
+    )
+    Set<Player> playerSet = new HashSet<>();
 
 }
